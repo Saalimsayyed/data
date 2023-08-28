@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Product List</h2>
+
+  <!-- <form method="GET" action="">
+    <label for="filter">Filter by Name:</label>
+    <input type="text" name="filter" value="{{ request.GET.filter }}">
+    <button type="submit">Filter</button>
+  </form>
+
+ <ul>
+    {% for product in products %}
+      <li>
+        {{ product.name }} - {{ product.price }} - {{ product.user_name }} -
+        {{ product.given|date:"Y-m-d" }} - {{ product.back|date:"Y-m-d" }} -
+        Quantity: {{ product.quantity }} - {{ product.duration }} {{ product.duration_unit }} -
+        Total Price: {{ product.total_price }}
+      </li>
+    {% endfor %}
+  </ul>-->
+<div class="demo-html">
+    <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap5">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="example_length"><label>Show <select name="example_length"
+                            aria-controls="example" class="form-select form-select-sm" fdprocessedid="x7pe2f">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select> entries</label></div>
+            </div>
+            <form method="GET" action="">
+            <div class="col-sm-12 col-md-6">
+                <div id="example_filter" class="dataTables_filter"><label>Search:<input type="search" name="filter"
+                            class="form-control form-control-sm" value="{{ request.GET.filter }}" aria-controls="example"></label><button type="submit">Find</button></div>
+
+            </div>
+            </form>
+        </div>
+
+        <div class="row dt-row">
+            <div class="col-sm-12">
+                <table id="example" class="table table-striped dataTable" style="width: 100%;"
+                    aria-describedby="example_info">
+                    <thead>
+                        <tr>
+                            <th class="sorting sorting_desc" tabindex="0" aria-controls="example" rowspan="1"
+                                colspan="1" aria-label="Name: activate to sort column ascending" style="width: 104px;"
+                                aria-sort="descending">Name</th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Position: activate to sort column ascending" style="width: 170px;">Price
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Office: activate to sort column ascending" style="width: 76px;">Username</th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Office: activate to sort column ascending" style="width: 76px;">Feet</th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Age: activate to sort column ascending" style="width: 27px;">given</th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Start date: activate to sort column ascending" style="width: 64px;">back
+                                date</th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Salary: activate to sort column ascending" style="width: 56px;">quantity</th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Salary: activate to sort column ascending" style="width: 56px;">duration</th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Salary: activate to sort column ascending" style="width: 56px;">duration_unit</th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                aria-label="Salary: activate to sort column ascending" style="width: 56px;">total price</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                      {% for product in products %}
+                        <tr class="odd">
+                            <td class="sorting_1">{{ product.name }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.user_name }}</td>
+                            <td>{{ product.feet }}</td>
+                            <td>{{ product.given }}</td>
+                            <td>{{ product.back}}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.duration }}</td>
+                            <td>{{ product.duration_unit }}</td>
+                            <td>{{ product.total_price }}</td>
+                            <td><button><a href="{% url 'product_update' product.pk %}">Update</a></button></td>
+                            <td><button><a href="{% url 'product_delete' product.pk %}">delete</a></button></td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57
+                    entries</div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                    <ul class="pagination">
+                        <li class="paginate_button page-item previous disabled" id="example_previous"><a
+                                aria-controls="example" aria-disabled="true" role="link" data-dt-idx="previous"
+                                tabindex="-1" class="page-link">Previous</a></li>
+                        <li class="paginate_button page-item active"><a href="#" aria-controls="example" role="link"
+                                aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">1</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" role="link"
+                                data-dt-idx="1" tabindex="0" class="page-link">2</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" role="link"
+                                data-dt-idx="2" tabindex="0" class="page-link">3</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" role="link"
+                                data-dt-idx="3" tabindex="0" class="page-link">4</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" role="link"
+                                data-dt-idx="4" tabindex="0" class="page-link">5</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" role="link"
+                                data-dt-idx="5" tabindex="0" class="page-link">6</a></li>
+                        <li class="paginate_button page-item next" id="example_next"><a href="#" aria-controls="example"
+                                role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

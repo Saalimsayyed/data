@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <title>Product Management</title>
+</head>
+<body>
+    <header>
+        <h1>Product Management System</h1>
+        <nav>
+            <a href="{% url 'product_list' %}">Product List</a>
+            <a href="{% url 'product_create' %}">Create Product</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<srcipt>
+    new DataTable('#example');
+</srcipt>
+</html>
